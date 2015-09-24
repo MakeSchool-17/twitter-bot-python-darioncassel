@@ -1,4 +1,3 @@
-import sys
 import random
 import nltk
 from nltk.tag import map_tag

@@ -7,7 +7,8 @@ def main(num):
         words = file.readlines()
         for x in range(int(num)):
             rand = random.randint(0, len(words)-1)
-            print(words[rand])
+            print(words[rand].split('\n')[0], end=" ")
+        print()
 
 if __name__ == "__main__":
     arg = sys.argv[1]
