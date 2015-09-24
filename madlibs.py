@@ -13,6 +13,7 @@ def main():
         num = random.randint(0, len(words)-1)
         word = [words[num]]
         part = nltk.pos_tag(word)[0][1]
+        #added comment
         words[num] = "__%w__" % part
     return ' '.join(words)
 
