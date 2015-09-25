@@ -1,6 +1,6 @@
 
 def histogram(source_text):
-    words = text.split(' ')
+    words = source_text.split(' ')
     result = {}
     for word in words:
         if word in result.keys():
@@ -11,7 +11,7 @@ def histogram(source_text):
 
 
 def histogram_tuple(source_text):
-    words = text.split(' ')
+    words = source_text.split(' ')
     result = []
     for word in words:
         contains = False
@@ -29,7 +29,7 @@ def histogram_tuple(source_text):
 
 
 def unique_words(source_text):
-    words = text.split(' ')
+    words = source_text.split(' ')
     result = []
     for word in words:
         if word not in result:
