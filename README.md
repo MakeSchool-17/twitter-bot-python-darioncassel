@@ -19,4 +19,4 @@ twitter-bot-python-darioncassel
       Histogram with tuples: frequency.py (histogram_tuple())
 
 ## 4. Stochastic Sampling
-      
+      Random select, weighted select, test_probability: sampling.py

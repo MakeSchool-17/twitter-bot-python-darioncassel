@@ -10,15 +10,27 @@ def unweighted_select(hist):
 
 
 def weighted_select(hist):
-    length = sum(hist[x] for x in hist.keys())
+    length = sum(hist[word] for word in hist.keys())
     num = random.randint(0, length)
-    for x in hist:
-        num = num - hist[x]
+    for word in hist:
+        num -= hist[word]
         if num <= 0:
-            return x
+            return word
+
+
+def test_probability(hist):
+    keys = {}
+    for key in hist.keys():
+        keys[key] = 0
+    for i in range(10000):
+        key = weighted_select(hist)
+        keys[key] += 1
+    for key in keys:
+        keys[key] = keys[key]/10000
+    return keys
 
 if __name__ == "__main__":
     args = sys.argv[1:]
     text = ' '.join(args)
     hist = histogram(text)
-    print(weighted_select(hist))
+    print(test_probability(hist))
