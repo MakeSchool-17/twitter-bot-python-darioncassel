@@ -1,6 +1,9 @@
 import sys
 import random
 
+# This is all experimental and in progress code;
+# it works mostly but not always or efficiently
+
 
 def load_dictionary():
     arr = open('/usr/share/dict/words').readlines()
