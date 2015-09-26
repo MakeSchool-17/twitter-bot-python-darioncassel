@@ -3,10 +3,7 @@ from collections import Counter
 
 
 def fast_histogram(array):
-    hist = Counter()
-    for word in array:
-        hist[word] += 1
-    return hist
+    return Counter(array)
 
 
 def small_histogram(array):
