@@ -11,7 +11,7 @@ twitter-bot-python-darioncassel
       Random "sentences" : dictionary_words.py
       --Stretch--
       Autocomplete : autocomplete.py
-      Anagrams : anagram.py (generates sentences, but WIP)
+      Anagrams : anagram.py (generates sentences)
 
 ## 3. Analyze Word Frequency in Text
       Histogram, unique_words, frequency: frequency.py
@@ -20,4 +20,4 @@ twitter-bot-python-darioncassel
 
 ## 4. Stochastic Sampling
       Random select, weighted select, test_probability: sampling.py
-      speed, memory optimized histograms: histogram.py
+      Speed, memory optimized histograms: histogram.py
