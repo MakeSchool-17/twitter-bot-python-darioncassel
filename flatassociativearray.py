@@ -3,6 +3,7 @@ class FlatAssociativeArray:
     data_list = []
     keys = []
 
+    # inits from array to hisogram
     def __init__(self, array):
         self.data_list = []
         if array:
@@ -13,30 +14,42 @@ class FlatAssociativeArray:
                     self.update(item)
             self.keys = self.getKeys()
 
+    # if data not in self.keys
     def insert(self, data):
-        if data not in self.keys:
-            item = [data, 1]
-            self.data_list.append(item)
-            self.keys = self.getKeys()
+        item = [data, 1]
+        self.data_list.append(item)
+        self.keys = self.getKeys()
 
+    # if data in keys
     def update(self, data):
-        keys = self.keys
-        if data in keys:
-            index = self.indexKey(data)
-            self.data_list[index][1] = self.data_list[index] + 1
+        index = self.getIndex(data)
+        self.data_list[index][1] = self.data_list[index] + 1
 
-    def search(self, item):
-        index = self.indexKey(item)
+    # returns [key, val] item
+    def search(self, key):
+        index = self.getIndex(key)
         if index:
             return self.data_list[index]
         return None
 
-    def indexKey(self, item):
+    # returns index of key
+    def getIndex(self, key):
         keys = self.keys
         for i in range(len(keys)):
-            if item == keys[i]:
+            if key == keys[i]:
                 return i
 
+    # returns key at index
+    def getKey(self, index):
+        return self.data_list[index][0]
+
+    # returns value of key
+    def getValue(self, key):
+        index = self.getIndex(key)
+        if index:
+            return self.data_list[index][1]
+
+    # returns all keys in data_list
     def getKeys(self):
         keys = []
         for item in self.data_list:
