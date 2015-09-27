@@ -1,6 +1,7 @@
 class FlatAssociativeArray:
 
     data_list = []
+    keys = []
 
     def __init__(self, array):
         self.data_list = []
@@ -10,15 +11,16 @@ class FlatAssociativeArray:
                     self.insert(item)
                 else:
                     self.update(item)
+            self.keys = self.getKeys()
 
     def insert(self, data):
-        keys = self.getKeys()
-        if data not in keys:
+        if data not in self.keys:
             item = [data, 1]
             self.data_list.append(item)
+            self.keys = self.getKeys()
 
     def update(self, data):
-        keys = self.getKeys()
+        keys = self.keys
         if data in keys:
             index = self.indexKey(data)
             self.data_list[index][1] = self.data_list[index] + 1
@@ -29,14 +31,14 @@ class FlatAssociativeArray:
             return self.data_list[index]
         return None
 
+    def indexKey(self, item):
+        keys = self.keys
+        for i in range(len(keys)):
+            if item == keys[i]:
+                return i
+
     def getKeys(self):
         keys = []
         for item in self.data_list:
             keys.append(item[0])
         return keys
-
-    def indexKey(self, item):
-        keys = self.getKeys()
-        for i in range(len(keys)):
-            if item == keys[i]:
-                return i
