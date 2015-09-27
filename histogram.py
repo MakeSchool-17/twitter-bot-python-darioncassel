@@ -1,9 +1,10 @@
 import sys
 from collections import Counter
+from flatassociativearray import FlatAssociativeArray
 
 
 def fast_histogram(array):
-    return Counter(array)
+    return FlatAssociativeArray(array)  # Counter(array)
 
 
 def small_histogram(array):
