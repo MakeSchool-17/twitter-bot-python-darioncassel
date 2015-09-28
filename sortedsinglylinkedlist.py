@@ -16,6 +16,7 @@ class SortedSinglyLinkedList:
                 self.update(index)
         self.length = len(self)
 
+    # insert at correct (sorted) position
     def insert(self, node):
         if not self.head:
             node.next_node = self.last_node
@@ -77,9 +78,23 @@ class SortedSinglyLinkedList:
 
     # returns index of node given data
     def index_of(self, data):
-        for index in range(self.length):
-            if self[index].data == data:
-                return index
+        return self.binary_search(data)
+
+    def binary_search(self, data):
+        found = False
+        low = 0
+        high = self.length-1
+        if self.length == 0:
+            found = True
+        while not found:
+            midpoint = int((low+high)/2)
+            if data == self[midpoint].data:
+                found = True
+                return midpoint
+            elif data > self[midpoint].data:
+                low = midpoint + 1
+            else:
+                high = midpoint
 
     # increases counter of node at index
     def update(self, index):

@@ -20,6 +20,7 @@ twitter-bot-python-darioncassel
 
 ## 4. Stochastic Sampling
       Random select, weighted select, test_probability: sampling.py
+      --Stretch--
       Speed, memory optimized histograms: histogram.py
 
 ## 5. Data Structure Comparisons and Performance Analysis
