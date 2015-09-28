@@ -2,7 +2,7 @@
 twitter-bot-python-darioncassel
 
 ## 1. Let's Build a Twitter Bot
-      Rearrage words : rearrange.py
+      Rearrange words : (/rearrange.py)
       --Stretch--
       String, sentence reversals : reverse.py
       Interactive mad libs : madlibs.py
