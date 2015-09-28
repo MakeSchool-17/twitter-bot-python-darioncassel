@@ -14,6 +14,7 @@ class SortedSinglyLinkedList:
                 self.insert(node)
             else:
                 self.update(index)
+        self.length = len(self)
 
     def insert(self, node):
         if not self.head:
@@ -39,7 +40,7 @@ class SortedSinglyLinkedList:
                 current_node = current_node.next_node
                 index += 1
             if not added:
-                self.insert_after(index-1, node)
+                self.append(node)
 
     # insert node at index after current node there
     def insert_after(self, index, node):
@@ -47,7 +48,6 @@ class SortedSinglyLinkedList:
         next_node = current_node.next_node
         current_node.next_node = node
         node.next_node = next_node
-        self.length += 1
 
     # insert node at index before current node there
     def insert_before(self, index, node):
@@ -59,7 +59,6 @@ class SortedSinglyLinkedList:
             previous_node = self[index-1]
             previous_node.next_node = node
             node.next_node = current_node
-        self.length += 1
 
     # appends node to end of list
     def append(self, node):
@@ -75,7 +74,6 @@ class SortedSinglyLinkedList:
         else:
             node.next_node = self.last_node
             self.head = node
-        self.length += 1
 
     # returns index of node given data
     def index_of(self, data):
@@ -87,8 +85,16 @@ class SortedSinglyLinkedList:
     def update(self, index):
         self[index].count += 1
 
-    def remove(self, node):
-        pass
+    # remove node at index
+    def remove(self, index):
+        current_node = self[index]
+        if current_node == self.head:
+            self.head = current_node.next_node
+            current_node = None
+        else:
+            previous_node = self[index-1]
+            previous_node.next_node = current_node.next_node
+            del current_node
 
     # required for iterable
     def __iter__(self):
@@ -109,6 +115,15 @@ class SortedSinglyLinkedList:
                 print("Error: Index out of bounds")
                 return None
         return node
+
+    # define for len() to work
+    def __len__(self):
+        counter = 0
+        node = self.head
+        while node:
+            counter += 1
+            node = node.next_node
+        return counter
 
     # print the list
     def __str__(self):

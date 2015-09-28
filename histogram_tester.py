@@ -9,6 +9,7 @@ def test_tuple_list(word, words):
     return frequency
 
 
+# analysis: O(n), benchmark: O(n)
 def test_ssll(word, words):
     frequency = words[words.index_of(word)].count
     return frequency
@@ -47,5 +48,7 @@ if __name__ == "__main__":
     print(benchmark(FlatAssociativeArray, test_tuple_list, 100))
     # FAA 1000: 0.20183217800513376
     print(benchmark(FlatAssociativeArray, test_tuple_list, 1000))
-    # SSLL 10:
+    # SSLL 100: 0.027054018999479013
     print(benchmark(SortedSinglyLinkedList, test_ssll, 100))
+    # SSLL 1000: 0.21087803699992946
+    print(benchmark(SortedSinglyLinkedList, test_ssll, 1000))
