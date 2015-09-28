@@ -26,4 +26,5 @@ twitter-bot-python-darioncassel
 ## 5. Data Structure Comparisons and Performance Analysis
       Flat Associative Array: flatassociativearray.py
       Sorted Singly Linked List: sortedsinglylinkedlist.py
+      Doubly Linked List: doublylinkedlist.py
       Analysis & benchmarks: histogram_tester.py
