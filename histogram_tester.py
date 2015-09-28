@@ -38,17 +38,20 @@ def benchmark(struct, function, size):
                                                      struct.__name__,
                                                      size)
     timer = timeit.Timer(test, setup=setup)
-    iterations = 1
-    result = timer.timeit(number=iterations)
-    return result
+    num = 0
+    sum = 0
+    for x in range(1000):
+        sum += timer.timeit(number=1)
+        num += 1
+    return sum/num
 
 if __name__ == "__main__":
 
-    # FAA 100: 0.02784024599532131
+    # FAA 100: 0.027061045599912178
     print(benchmark(FlatAssociativeArray, test_tuple_list, 100))
-    # FAA 1000: 0.20183217800513376
+    # FAA 1000: 0.11650251239971113
     print(benchmark(FlatAssociativeArray, test_tuple_list, 1000))
-    # SSLL 100: 0.027054018999479013
+    # SSLL 100: 0.02705211373995553
     print(benchmark(SortedSinglyLinkedList, test_ssll, 100))
-    # SSLL 1000: 0.21087803699992946
+    # SSLL 1000: 0.11500938755001698
     print(benchmark(SortedSinglyLinkedList, test_ssll, 1000))
