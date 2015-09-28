@@ -1,6 +1,7 @@
 import timeit
 from flatassociativearray import FlatAssociativeArray
 from sortedsinglylinkedlist import SortedSinglyLinkedList
+from doublylinkedlist import DoublyLinkedList
 
 
 # analysis: O(n), benchmark: O(n)
@@ -11,6 +12,12 @@ def test_tuple_list(word, words):
 
 # analysis: O(n), benchmark: O(n)
 def test_ssll(word, words):
+    frequency = words[words.index_of(word)].count
+    return frequency
+
+
+# analysis: O(n), benchmark: O(n)
+def test_dll(word, words):
     frequency = words[words.index_of(word)].count
     return frequency
 
@@ -40,7 +47,7 @@ def benchmark(struct, function, size):
     timer = timeit.Timer(test, setup=setup)
     num = 0
     sum = 0
-    for x in range(1000):
+    for x in range(100):
         sum += timer.timeit(number=1)
         num += 1
     return sum/num
@@ -48,10 +55,20 @@ def benchmark(struct, function, size):
 if __name__ == "__main__":
 
     # FAA 100: 0.027061045599912178
-    print(benchmark(FlatAssociativeArray, test_tuple_list, 100))
+    print("FAA 100: " +
+          str(benchmark(FlatAssociativeArray, test_tuple_list, 100)))
     # FAA 1000: 0.11650251239971113
-    print(benchmark(FlatAssociativeArray, test_tuple_list, 1000))
+    print("FAA 1000: " +
+          str(benchmark(FlatAssociativeArray, test_tuple_list, 1000)))
     # SSLL 100: 0.02705211373995553
-    print(benchmark(SortedSinglyLinkedList, test_ssll, 100))
+    print("SSLL 100: " +
+          str(benchmark(SortedSinglyLinkedList, test_ssll, 100)))
     # SSLL 1000: 0.11500938755001698
-    print(benchmark(SortedSinglyLinkedList, test_ssll, 1000))
+    print("SSLL 1000: " +
+          str(benchmark(SortedSinglyLinkedList, test_ssll, 1000)))
+    # DLL 100: 0.0305517836299623
+    print("DLL 100: " +
+          str(benchmark(DoublyLinkedList, test_dll, 100)))
+    # DLL 1000: 0.10661697606989037
+    print("DLL 1000: " +
+          str(benchmark(DoublyLinkedList, test_dll, 1000)))
