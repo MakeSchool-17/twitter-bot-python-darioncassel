@@ -11,9 +11,55 @@ class SortedSinglyLinkedList:
             index = self.index_of(data)
             if index is None:
                 node = Node(data)
-                self.append(node)
+                self.insert(node)
             else:
                 self.update(index)
+
+    def insert(self, node):
+        if not self.head:
+            node.next_node = self.last_node
+            self.head = node
+        elif self.head and not self.last_node:
+            if self.head.data < node.data:
+                self.head.next_node = node
+                self.last_node = node
+            else:
+                self.last_node = self.head
+                node.next_node = self.last_node
+                self.head = node
+        else:
+            index = 0
+            current_node = self.head
+            added = False
+            while current_node:
+                if node.data < current_node.data:
+                    self.insert_before(index, node)
+                    added = True
+                    break
+                current_node = current_node.next_node
+                index += 1
+            if not added:
+                self.insert_after(index-1, node)
+
+    # insert node at index after current node there
+    def insert_after(self, index, node):
+        current_node = self[index]
+        next_node = current_node.next_node
+        current_node.next_node = node
+        node.next_node = next_node
+        self.length += 1
+
+    # insert node at index before current node there
+    def insert_before(self, index, node):
+        current_node = self[index]
+        if current_node == self.head:
+            self.head = node
+            node.next_node = current_node
+        else:
+            previous_node = self[index-1]
+            previous_node.next_node = node
+            node.next_node = current_node
+        self.length += 1
 
     # appends node to end of list
     def append(self, node):

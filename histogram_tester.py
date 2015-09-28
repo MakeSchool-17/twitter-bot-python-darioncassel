@@ -47,5 +47,5 @@ if __name__ == "__main__":
     print(benchmark(FlatAssociativeArray, test_tuple_list, 100))
     # FAA 1000: 0.20183217800513376
     print(benchmark(FlatAssociativeArray, test_tuple_list, 1000))
-    # SSLL 10: 
+    # SSLL 10:
     print(benchmark(SortedSinglyLinkedList, test_ssll, 100))
