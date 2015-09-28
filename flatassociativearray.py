@@ -20,7 +20,7 @@ class FlatAssociativeArray:
         self.data_list.append(item)
         self.keys = self.getKeys()
 
-    # if data in keys
+    # if data in keys, increases count
     def update(self, data):
         index = self.getIndex(data)
         self.data_list[index] = (self.getKey(index), self.getValue(index) + 1)

@@ -1,11 +1,16 @@
 import timeit
 from flatassociativearray import FlatAssociativeArray
+from sortedsinglylinkedlist import SortedSinglyLinkedList
 
 
 # analysis: O(n), benchmark: O(n)
 def test_tuple_list(word, words):
-    tuple_list = FlatAssociativeArray(words)
-    frequency = tuple_list.getValue(words)
+    frequency = words.getValue(words)
+    return frequency
+
+
+def test_ssll(word, words):
+    frequency = words[words.index_of(word)].count
     return frequency
 
 
@@ -17,19 +22,20 @@ def dict_list(length):
 
 
 def hgram_generate(struct, size):
-    words = dict_list(size)
-    hgram = struct(words)
+    hgram = struct(dict_list(size))
     return hgram
 
 
 def benchmark(struct, function, size):
-    hgram = hgram_generate(struct, size)
-    hsearch = hgram[-1]
+    words = dict_list(size)
+    hsearch = words[-1]
+    setup = "from {} import {}; \
+        from __main__ import {}, hgram_generate".format(
+            struct.__name__.lower(), struct.__name__, function.__name__)
     test = "{}('{}', hgram_generate({}, {}))".format(function.__name__,
-                                                     hsearch, struct.__name__,
+                                                     hsearch,
+                                                     struct.__name__,
                                                      size)
-    setup = "from flatassociativearray import FlatAssociativeArray; \
-        from __main__ import {}, hgram_generate".format(function.__name__)
     timer = timeit.Timer(test, setup=setup)
     iterations = 1
     result = timer.timeit(number=iterations)
@@ -41,3 +47,5 @@ if __name__ == "__main__":
     print(benchmark(FlatAssociativeArray, test_tuple_list, 100))
     # FAA 1000: 0.20183217800513376
     print(benchmark(FlatAssociativeArray, test_tuple_list, 1000))
+    # SSLL 10: 
+    print(benchmark(SortedSinglyLinkedList, test_ssll, 100))

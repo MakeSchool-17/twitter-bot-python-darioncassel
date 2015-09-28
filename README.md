@@ -21,3 +21,8 @@ twitter-bot-python-darioncassel
 ## 4. Stochastic Sampling
       Random select, weighted select, test_probability: sampling.py
       Speed, memory optimized histograms: histogram.py
+
+## 5. Data Structure Comparisons and Performance Analysis
+      Flat Associative Array: flatassociativearray.py
+      Sorted Singly Linked List: sortedsinglylinkedlist.py
+      Analysis & benchmarks: histogram_tester.py
