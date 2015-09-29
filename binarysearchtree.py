@@ -1,6 +1,7 @@
 class BinarySearchTree:
 
     root_node = None
+    counter = 0
 
     def __init__(self, array):
         self.root_node = Node(None)
@@ -21,60 +22,39 @@ class BinarySearchTree:
             else:
                 self.insert(current_node.child_right, key)
 
-    # in-order traversal
-    def traverse_print(self, node):
-        left = node.child_left
-        right = node.child_right
-        if left.key or right.key:
-            if left.key:
-                self.traverse(left)
-            print(node.key)
-            if right.key:
-                self.traverse(right)
-        else:
-            print(node.key)
-
-    # in-order traversal
-    def traverse_print_root(self):
-        self.traverse_print(self.root_node)
+    def index_of(self, key):
+        for index in range(len(self)):
+            if self[index] == key:
+                return index
 
     # in-order iteration
     def __iter__(self):
-        node = self.traverse(self.root_node)
-        while node:
-            return node
-
-    # in-order traversal
-    def traverse(self, node):
-        left = node.child_left
-        right = node.child_right
-        if left.key or right.key:
-            if left.key:
-                self.traverse(left)
-            yield node
-            if right.key:
-                self.traverse(right)
-        else:
-            yield node
+        for index in range(len(self)):
+            yield self[index]
 
     def __getitem__(self, index):
-        return self.traverse_to(self.root_node, index)
+        self.counter = 0
+        return self.traverse_to(self.root_node, index+1)
 
-    # in-order traversal to index
+    # iterate to index
     def traverse_to(self, node, index):
-        counter = 1
-        while counter <= index:
-            left = node.child_left
-            right = node.child_right
-            if left.key or right.key:
-                if left.key:
-                    counter += self.traverse_to(left, index)
-                if right.key:
-                    counter += self.traverse_to(right, index)
-            #else:
-                #yield node
-            yield counter
-        return node
+        condition = self.counter < index
+        if condition:
+            if node.child_left.key or node.child_right.key:
+                pos1 = None
+                pos2 = None
+                if node.child_left.key and condition:
+                    pos1 = self.traverse_to(node.child_left, index)
+                self.counter += 1
+                if self.counter == index:
+                    return node
+                if node.child_right.key and condition:
+                    pos2 = self.traverse_to(node.child_right, index)
+                return pos1 or pos2
+            else:
+                self.counter += 1
+                if self.counter == index:
+                    return node
 
     def __len__(self):
         return self.length(self.root_node)
@@ -88,7 +68,11 @@ class BinarySearchTree:
         return counter
 
     def __str__(self):
-        pass
+        nodes = ""
+        for index in range(len(self)):
+            node = self[index]
+            nodes += "({}, {}) ".format(node.key, node.value)
+        return nodes
 
 
 class Node:

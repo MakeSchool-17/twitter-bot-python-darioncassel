@@ -2,6 +2,7 @@ import timeit
 from flatassociativearray import FlatAssociativeArray
 from sortedsinglylinkedlist import SortedSinglyLinkedList
 from doublylinkedlist import DoublyLinkedList
+from binarysearchtree import BinarySearchTree
 
 
 # analysis: O(n), benchmark: O(n)
@@ -19,6 +20,12 @@ def test_ssll(word, words):
 # analysis: O(n), benchmark: O(n)
 def test_dll(word, words):
     frequency = words[words.index_of(word)].count
+    return frequency
+
+
+# analysis: , benchmark:
+def test_bst(word, words):
+    frequency = words[words.index_of(word)].counter
     return frequency
 
 
