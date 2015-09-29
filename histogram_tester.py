@@ -1,4 +1,5 @@
 import timeit
+import random
 from flatassociativearray import FlatAssociativeArray
 from sortedsinglylinkedlist import SortedSinglyLinkedList
 from doublylinkedlist import DoublyLinkedList
@@ -23,9 +24,9 @@ def test_dll(word, words):
     return frequency
 
 
-# analysis: , benchmark:
+# analysis: O(log(n)), benchmark: O(log(n))
 def test_bst(word, words):
-    frequency = words[words.index_of(word)].counter
+    frequency = words.binary_search(words.root_node, word)
     return frequency
 
 
@@ -33,7 +34,9 @@ def dict_list(length):
     dict_words = '/usr/share/dict/words'
     words_str = open(dict_words, 'r').read()
     all_words = words_str.split("\n")
-    return all_words[0:length]
+    words = all_words[0:length]
+    random.shuffle(words)
+    return words
 
 
 def hgram_generate(struct, size):
@@ -79,3 +82,9 @@ if __name__ == "__main__":
     # DLL 1000: 0.10661697606989037
     print("DLL 1000: " +
           str(benchmark(DoublyLinkedList, test_dll, 1000)))
+    # BST 100: 0.027463051750310115
+    print("BST 100: " +
+          str(benchmark(BinarySearchTree, test_bst, 100)))
+    # BST 1000: 0.031981624280088
+    print("BST 1000: " +
+          str(benchmark(BinarySearchTree, test_bst, 1000)))

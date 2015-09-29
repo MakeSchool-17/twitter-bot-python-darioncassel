@@ -22,10 +22,13 @@ class BinarySearchTree:
             else:
                 self.insert(current_node.child_right, key)
 
-    def index_of(self, key):
-        for index in range(len(self)):
-            if self[index] == key:
-                return index
+    def binary_search(self, node, key):
+        if key == node.key:
+            return node.value
+        elif key < node.key:
+            self.binary_search(node.child_left, key)
+        else:
+            self.binary_search(node.child_right, key)
 
     # in-order iteration
     def __iter__(self):
