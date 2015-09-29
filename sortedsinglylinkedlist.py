@@ -76,6 +76,17 @@ class SortedSinglyLinkedList:
             node.next_node = self.last_node
             self.head = node
 
+    # returns node given data
+    def getNode(self, data):
+        index = 0
+        node = self.head
+        while index < self.length:
+            if node.data == data:
+                return node
+            if node.next_node:
+                node = node.next_node
+                index += 1
+
     # returns index of node given data
     def index_of(self, data):
         return self.binary_search(data)

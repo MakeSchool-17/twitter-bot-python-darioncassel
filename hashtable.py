@@ -14,12 +14,12 @@ class HashTable:
                 self.set(key, 1)
 
     def get(self, key):
-        index = self.hash_func(key)
+        index = self.index(key)
         if index < len(self.vals):
             return self.vals[index]
 
     def set(self, key, val):
-        index = self.hash_func(key)
+        index = self.index(key)
         self.vals[index] = val
         self.keys.append(key)
 
@@ -35,10 +35,10 @@ class HashTable:
     # Generates array index from key
     # params: length of key array, key string
     # (int, str) -> int
-    def hash_func(self, key):
-        return self.char_val(key) % self.length
+    def index(self, key):
+        return self.hash_func(key) % self.length
 
-    def char_val(self, key):
+    def hash_func(self, key):
         sum = 0
         if len(key) > 1:
             chars = key.split("")

@@ -14,7 +14,7 @@ def test_tuple_list(word, words):
 
 # analysis: O(n), benchmark: O(n)
 def test_ssll(word, words):
-    frequency = words[words.index_of(word)].count
+    frequency = words.getNode(word).count
     return frequency
 
 
