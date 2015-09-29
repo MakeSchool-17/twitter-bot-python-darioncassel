@@ -27,4 +27,5 @@ twitter-bot-python-darioncassel
 * [Flat Associative Array](flatassociativearray.py)
 * [Sorted Singly Linked List](sortedsinglylinkedlist.py)
 * [Doubly Linked List](doublylinkedlist.py)
+* [Binary Search Tree](binarysearchtree.py)
 * [Analysis & benchmarks](histogram_tester.py)
