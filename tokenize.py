@@ -12,8 +12,11 @@ def tokenize(file_name):
         words = file.read().split(" ")
         for word in words:
             tokens.append(word)
+    tokens.pop()
     return tokens
 
 if __name__ == "__main__":
     file_name = sys.argv[1]
-    print(tokenize(file_name))
+    result = tokenize(file_name)
+    print(result)
+    print(len(result))
