@@ -7,10 +7,13 @@ class HashTable:
         self.length = len(array)
         self.vals = [None] * self.length
         for key in array:
-            if key in self.getKeys():
+            if key in self.keys:
                 self.update(key, self.get(key)+1)
             else:
                 self.set(key, 1)
+
+    def __getitem__(self, key):
+        return self.get(key)
 
     # returns val of key
     def get(self, key):
@@ -29,10 +32,17 @@ class HashTable:
         index = self.index(key)
         self.vals[index].update(key, val)
 
-    def getKeys(self):
+    def keys(self):
         return self.keys
 
-    def getVals(self):
+    def __iter__(self):
+        for linkedlist in self.vals:
+            if linkedlist:
+                for node in linkedlist:
+                    if node:
+                        yield node
+
+    def values(self):
         array = []
         for linkedlist in self.vals:
             if linkedlist:
@@ -46,6 +56,15 @@ class HashTable:
     # (int, str) -> int
     def index(self, key):
         return hash(key) % self.length
+
+    def __len__(self):
+        counter = 0
+        for linkedlist in self.vals:
+            if linkedlist:
+                for node in linkedlist:
+                    if node:
+                        counter += 1
+        return counter
 
 
 class LinkedList:
