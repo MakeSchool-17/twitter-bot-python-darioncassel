@@ -1,6 +1,6 @@
 import sys
 
-exclude = ['&#164;', '&#166;', '&#172;', '&#175;', '&#91;', '&#93;']
+exclude = ['&#164;', '&#166;', '&#172;', '&#175;', '&#91;', '&#93;', '\n']
 
 
 def parse(file_name):
@@ -12,10 +12,10 @@ def parse(file_name):
     """
     cleaned_up = ""
     with open(file_name) as file:
-        words = file.split(" ")
+        words = file.read().split(" ")
         for word in words:
             if word not in exclude:
-                cleaned_up += word
+                cleaned_up += " " + word
     return cleaned_up
 
 if __name__ == "__main__":

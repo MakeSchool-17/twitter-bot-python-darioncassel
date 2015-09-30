@@ -10,9 +10,9 @@ def tokenize(file_name):
     """
     tokens = []
     with open(file_name) as file:
-        words = file.split(" ")
+        words = file.read().split(" ")
         for word in words:
-            tokens.append[word]
+            tokens.append(word)
     return tokens
 
 if __name__ == "__main__":
