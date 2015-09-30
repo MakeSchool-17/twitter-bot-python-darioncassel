@@ -11,7 +11,7 @@ def parse(file_name):
     str -> str
     """
     cleaned_up = ""
-    while open(file_name) as file:
+    with open(file_name) as file:
         words = file.split(" ")
         for word in words:
             if word not in exclude:
