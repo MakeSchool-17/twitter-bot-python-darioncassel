@@ -40,3 +40,7 @@ twitter-bot-python-darioncassel
 
 ## 8. Parsing Text and Cleanup
 * [Cleanup Parser](cleanup_parser.py)
+* [Clean Corpus](clean_corpus.txt)
+
+## 9. Tokenization
+* [Tokenizer](tokenize.py)
