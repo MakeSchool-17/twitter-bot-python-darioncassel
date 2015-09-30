@@ -1,5 +1,10 @@
 
 def histogram(source_text):
+    """Given a string, creates a histogram with
+    Python's dictionary
+
+    str -> dictionary
+    """
     words = source_text.split(' ')
     result = {}
     for word in words:
@@ -11,6 +16,11 @@ def histogram(source_text):
 
 
 def histogram_tuple(source_text):
+    """Given a string, creates a histogram with
+    a basic flat associative array
+
+    str -> [tuple]
+    """
     words = source_text.split(' ')
     result = []
     for word in words:
@@ -29,6 +39,11 @@ def histogram_tuple(source_text):
 
 
 def unique_words(source_text):
+    """Returns the number of unique words
+    given a source string
+
+    str -> int
+    """
     words = source_text.split(' ')
     result = []
     for word in words:
@@ -38,10 +53,14 @@ def unique_words(source_text):
 
 
 def frequency(word, histogram):
+    """Returns frequency of word given an interable histogram
+
+    str, :histogram -> int
+    """
     return histogram[word]
 
 if __name__ == "__main__":
     text = open('paragraphs.txt').read()
     print(histogram_tuple(text))
-    # print(unique_words(text))
-    # print(frequency("of", histogram(text)))
+    print(unique_words(text))
+    print(frequency("of", histogram(text)))

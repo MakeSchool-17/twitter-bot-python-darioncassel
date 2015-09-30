@@ -38,6 +38,10 @@ def test_hashtable(word, words):
 
 
 def dict_list(length):
+    """Generates a list of length dictionary words
+
+    int -> array
+    """
     dict_words = '/usr/share/dict/words'
     words_str = open(dict_words, 'r').read()
     all_words = words_str.split("\n")
@@ -47,11 +51,24 @@ def dict_list(length):
 
 
 def hgram_generate(struct, size):
+    """Generates a histogram
+
+    Params: struct - data structure
+            size - size of dictionary words to generate
+    ___, int -> :histogram
+    """
     hgram = struct(dict_list(size))
     return hgram
 
 
 def benchmark(struct, function, size):
+    """Runs a benchmark
+
+    Params: struct - data structure
+            function - function (lookup) to test
+            size - size of dictionary words to generate
+    ___, (str, array -> int), int -> float
+    """
     words = dict_list(size)
     hsearch = words[-1]
     setup = "from {} import {}; \

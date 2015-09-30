@@ -8,6 +8,11 @@ from collections import Counter
 
 
 def load_dictionary():
+    """Loads the dictionary but strips all single letter
+    entries except 'a' and 'i'
+
+    () -> array
+    """
     with open('/usr/share/dict/words') as file:
         arr = file.readlines()
         dict = {}
@@ -24,6 +29,13 @@ def load_dictionary():
 
 
 def main(args, dic):
+    """Preforms subset matching for each word in dictionary
+    to user supplied words
+
+    Params: args - sys argsv[1:]
+            dic - dictionary from load_dictionary()
+    (array, array) -> str
+    """
     char_array = prepare_char_array(args)
     failure = True
     while failure:
@@ -46,6 +58,12 @@ def main(args, dic):
 
 
 def is_subset(this, other):
+        """Checks that one array is a proper subset of the other
+
+        params: This - being checked against
+                Other -
+        (array, array) -> bool
+        """
         for char, count in this.items():
             if other[char] < count:
                 return False
@@ -53,6 +71,11 @@ def is_subset(this, other):
 
 
 def prepare_char_array(args):
+    """Given system arguments, convert to and return array of characters
+
+    Params: args - sys argsv[1:]
+    array -> array
+    """
     str = ' '.join(args)
     char_array = list(str)
     for x in char_array:

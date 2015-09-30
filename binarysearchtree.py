@@ -1,15 +1,18 @@
 class BinarySearchTree:
 
-    root_node = None
-    counter = 0
-
     def __init__(self, array):
         self.root_node = Node(None)
+        self.counter = 0
         for key in array:
             self.insert(self.root_node, key)
 
-    # recursive insertion with in-place count updating
     def insert(self, current_node, key):
+        """Recursive insertion with in-place count updating
+
+        Params: current_node - node function is applied to
+                key - to be inserted
+        (Node, string) -> ()
+        """
         if not current_node.key:
             current_node.key = key
             current_node.child_left = Node(None)
@@ -23,6 +26,12 @@ class BinarySearchTree:
                 self.insert(current_node.child_right, key)
 
     def binary_search(self, node, key):
+        """Recursively returns value of node given keys
+
+        Params: node - current node function applied to
+                key - key being searched for
+        (Node, string) -> int
+        """
         if key == node.key:
             return node.value
         elif key < node.key:
@@ -30,17 +39,27 @@ class BinarySearchTree:
         else:
             self.binary_search(node.child_right, key)
 
-    # in-order iteration
     def __iter__(self):
+        """In-order iteration"""
         for index in range(len(self)):
             yield self[index]
 
     def __getitem__(self, index):
+        """Returns item at index with in-order traversal
+
+        int -> Node
+        """
         self.counter = 0
         return self.traverse_to(self.root_node, index+1)
 
-    # iterate to index
     def traverse_to(self, node, index):
+        """In-order iteration to index
+
+        params: node - curent Node
+                index - in-order node to be returned
+                counter - to track current index pos
+        (Node, int) -> Node
+        """
         condition = self.counter < index
         if condition:
             if node.child_left.key or node.child_right.key:
@@ -60,9 +79,18 @@ class BinarySearchTree:
                     return node
 
     def __len__(self):
+        """Returns length of self
+
+        () -> int
+        """
         return self.length(self.root_node)
 
     def length(self, node):
+        """Returns length of tree
+
+        Params: node - current nodes
+        Node -> int
+        """
         counter = 1
         if node.child_left.key:
             counter += self.length(node.child_left)
@@ -80,10 +108,8 @@ class BinarySearchTree:
 
 class Node:
 
-    key = None
-    value = 1
-    child_left = None
-    child_right = None
-
-    def __init__(self, key):
+    def __init__(self, key=None):
         self.key = key
+        self.value = 1
+        self.child_left = None
+        self.child_right = None

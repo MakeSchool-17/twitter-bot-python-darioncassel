@@ -15,12 +15,20 @@ class HashTable:
     def __getitem__(self, key):
         return self.get(key)
 
-    # returns val of key
     def get(self, key):
+        """Returns value of a key
+
+        str -> int
+        """
         index = self.index(key)
         return self.vals[index].find(key).val
 
     def set(self, key, val):
+        """Sets key to val (linkedlist.appends to linkedlist at bucket)
+
+        * Should be called iff key not in keys
+        str, int -> ()
+        """
         index = self.index(key)
         if not self.vals[index]:
             self.vals[index] = LinkedList()
@@ -29,6 +37,11 @@ class HashTable:
             self.keys.append(key)
 
     def update(self, key, val):
+        """Finds index(bucket) of key and calls linkedlist.update
+
+        * Should be called iff key is in keys
+        str, int -> (str, int) -> ()
+        """
         index = self.index(key)
         self.vals[index].update(key, val)
 
@@ -36,6 +49,7 @@ class HashTable:
         return self.keys
 
     def __iter__(self):
+        """Required for iterable"""
         for linkedlist in self.vals:
             if linkedlist:
                 for node in linkedlist:
@@ -43,6 +57,10 @@ class HashTable:
                         yield node
 
     def values(self):
+        """Returns all the values in the hashtable
+
+        () -> array
+        """
         array = []
         for linkedlist in self.vals:
             if linkedlist:
@@ -51,13 +69,20 @@ class HashTable:
                         array.append(node.val)
         return array
 
-    # Generates vals index from key
-    # params: length of key array, key string
-    # (int, str) -> int
     def index(self, key):
+        """Generates vals index from key
+
+        params: key - string
+                self.length - number of nodes
+        int, str -> int
+        """
         return hash(key) % self.length
 
     def __len__(self):
+        """Returns number of nodes
+
+        () -> int
+        """
         counter = 0
         for linkedlist in self.vals:
             if linkedlist:
@@ -73,8 +98,12 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-    # appends node to end of list
     def append(self, key):
+        """Appends node to end of self
+
+        Params: key - key to append
+        str -> ()
+        """
         node = Node(key)
         # head and last node
         if self.head and self.tail:
@@ -89,23 +118,32 @@ class LinkedList:
             node.next_node = self.tail
             self.head = node
 
-    # returns node given data
-    def find(self, data):
+    def find(self, key):
+        """returns node given key
+
+        str -> Node
+        """
         index = 0
         node = self.head
         while index < len(self):
-            if node.data == data:
+            if node.key == key:
                 return node
             if node.next_node:
                 node = node.next_node
                 index += 1
 
-    # sets val of existing key
     def update(self, key, val):
+        """Sets val of existing key
+
+        int -> ()
+        """
         self.find(key).val = val
 
-    # remove node at index
     def remove(self, index):
+        """Remove node at index
+
+        int -> ()
+        """
         current_node = self[index]
         if current_node == self.head:
             self.head = current_node.next_node
@@ -115,15 +153,18 @@ class LinkedList:
             previous_node.next_node = current_node.next_node
             del current_node
 
-    # required for iterable
     def __iter__(self):
+        """Required for iterable"""
         node = self.head
         while node:
             yield node
             node = node.next_node
 
-    # required for iterable
     def __getitem__(self, index):
+        """Required for iterable; returns Node at index
+
+        int -> Node
+        """
         counter = 0
         node = self.head
         while counter < index:
@@ -135,8 +176,11 @@ class LinkedList:
                 return None
         return node
 
-    # define for len() to work
     def __len__(self):
+        """Define for len() to work
+
+        () -> int
+        """
         counter = 0
         node = self.head
         while node:
@@ -144,17 +188,20 @@ class LinkedList:
             node = node.next_node
         return counter
 
-    # print the list
     def __str__(self):
+        """Returns self as formatted string
+
+        () -> str
+        """
         nodes = "["
         for node in self:
-            nodes += "[{}, {}]".format(node.data, node.val)
+            nodes += "[{}, {}]".format(node.key, node.val)
         return nodes + "]"
 
 
 class Node:
 
-    def __init__(self, data=None):
-        self.data = data
+    def __init__(self, key=None):
+        self.key = key
         self.val = 1
         self.next_node = None

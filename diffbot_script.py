@@ -2,6 +2,9 @@ import requests
 
 
 def main():
+    """Preforms request for each url and writes sum result
+    to a text file (corpus.txt)
+    """
     urls = prepare_urls()
     with open("corpus.txt", "w") as file:
         corpus = ""
@@ -15,6 +18,7 @@ def main():
 
 
 def prepare_urls():
+    """Converts url lists in pages.txt to array of urls"""
     urls = []
     lines = open("pages.txt").readlines()
     for line in lines:
@@ -24,6 +28,7 @@ def prepare_urls():
 
 
 def request(url, params):
+    """Performs HTTP GET on a url an returns the result's text attr"""
     response = requests.get(url, params)
     response = response.json()['objects'][0]
     return response["text"]

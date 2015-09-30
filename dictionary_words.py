@@ -3,6 +3,11 @@ import random
 
 
 def main(num):
+    """Prints x random words where x is user supplied
+
+    Params: num -  sys argv[1]
+    int -> ()
+    """
     with open('/usr/share/dict/words') as file:
         words = file.readlines()
         for x in range(int(num)):

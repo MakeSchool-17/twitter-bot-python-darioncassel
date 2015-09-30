@@ -3,6 +3,12 @@ import re
 
 
 def main(str):
+    """Given an 'incomplete' string, prints a
+        list of possible completions
+
+    params: str - sys argv[1]
+    str -> ()
+    """
     with open('/usr/share/dict/words') as file:
         words = file.readlines()
         regex = '%s[a-z]*' % str

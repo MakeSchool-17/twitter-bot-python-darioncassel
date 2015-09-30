@@ -2,6 +2,10 @@ import sys
 
 
 def reverse(str):
+    """Reverses a string
+
+    string -> string
+    """
     arr = list(str)
     arr.reverse()
     return ''.join(arr)

@@ -4,6 +4,11 @@ from nltk.tag import map_tag
 
 
 def main():
+    """Selects a random paragraph from paragraphs.txt,
+    and uses NLTK position tagging (excluding adp, conj
+    det, and prt) to generate an interative madlibs
+    dialog
+    """
     exclude = ['ADP', 'CONJ', 'DET', 'PRT']
     text = open("paragraphs.txt").read()
     paragraphs = text.split("\n")
