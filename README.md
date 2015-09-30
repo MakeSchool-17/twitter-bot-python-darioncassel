@@ -29,3 +29,13 @@ twitter-bot-python-darioncassel
 * [Doubly Linked List](doublylinkedlist.py)
 * [Binary Search Tree](binarysearchtree.py)
 * [Analysis & benchmarks](histogram_tester.py)
+
+## 6. Hash Table from Scratch
+* [HashTable](hashtable.py)
+
+## 7. Picking a Corpus
+* [Sources](pages.txt)
+* [Diffbot Script](diffbot_script.py)
+* [Corpus](corpus.txt)
+
+## Parsing Text and Cleanup
