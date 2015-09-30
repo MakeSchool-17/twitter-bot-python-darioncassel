@@ -12,6 +12,7 @@ def tokenize(file_name):
     with open(file_name) as file:
         words = file.read().split(" ")
         for word in words:
+            word = re.sub('\n', '', word)
             tokens.append(word)
     return tokens
 
