@@ -38,4 +38,4 @@ twitter-bot-python-darioncassel
 * [Diffbot Script](diffbot_script.py)
 * [Corpus](corpus.txt)
 
-## Parsing Text and Cleanup
+## 8. Parsing Text and Cleanup
