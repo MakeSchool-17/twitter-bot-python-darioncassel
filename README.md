@@ -39,3 +39,4 @@ twitter-bot-python-darioncassel
 * [Corpus](corpus.txt)
 
 ## 8. Parsing Text and Cleanup
+* [Cleanup Parser](cleanup_parser.py)
