@@ -5,6 +5,12 @@ from sampling import weighted_select
 
 
 def main(file_name):
+    """Returns seven words by weighted random selection
+    from a histogram generated with the tokenized corpus
+
+    Params: file_name - name of cleaned corpus file
+    str -> list
+    """
     words = []
     hgram = generate_hgram(file_name)
     for i in range(7):
@@ -14,6 +20,12 @@ def main(file_name):
 
 
 def generate_hgram(file_name):
+    """Returns a hashtable intialized with the tokenized
+    corpus
+
+    Params: file_name - name of cleaned corpus file
+    str -> hashtable:Histogram
+    """
     return HashTable(tokenize(file_name))
 
 if __name__ == "__main__":
