@@ -39,11 +39,21 @@ class BinaryHeap:
         data_right = (node.right.key, node.right.val)
         if node.left.val and node.right.val:
             if node.left.val > node.right.val:
-                self.insert(data_left)
+                self.__insert(node, data_left)
                 self.__delete_max(node.left)
             else:
-                self.insert(data_right)
+                self.__insert(node, data_right)
                 self.__delete_max(node.right)
+        elif node.left.val or node.right.val:
+            if node.left.val:
+                self.__insert(node, data_left)
+                self.__delete_max(node.left)
+            elif node.right.val:
+                self.__insert(node, data_right)
+                self.__delete_max(node.right)
+        else:
+            node.left = None
+            node.right = None
 
     def __insert(self, current_node, data):
         """Inserts node at balanced position
