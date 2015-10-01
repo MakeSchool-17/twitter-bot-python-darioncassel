@@ -2,7 +2,6 @@ class BinaryHeap:
 
     def __init__(self):
         self.root = Node()
-        self.dir = False
 
     def peek(self):
         """Returns the root node as a tuple
@@ -20,6 +19,32 @@ class BinaryHeap:
         """
         self.__insert(self.root, data)
 
+    def delete_max(self):
+        """Wrapper method for delete_max to start
+        at the root
+
+        () -> ()
+        """
+        self.__delete_max(self.root)
+
+    def __delete_max(self, node):
+        """Delete the given node in-place
+
+        Params: node - node to delete
+        Node -> ()
+        """
+        data = (None, None)
+        self.__set(node, data)
+        data_left = (node.left.key, node.left.val)
+        data_right = (node.right.key, node.right.val)
+        if node.left.val and node.right.val:
+            if node.left.val > node.right.val:
+                self.insert(data_left)
+                self.__delete_max(node.left)
+            else:
+                self.insert(data_right)
+                self.__delete_max(node.right)
+
     def __insert(self, current_node, data):
         """Inserts node at balanced position
 
@@ -27,16 +52,15 @@ class BinaryHeap:
 
         (str, int) -> ()
         """
-        self.dir = not self.dir
         if not current_node.key or data[1] > current_node.val:
             self.__replace(current_node, data)
         else:
-            if self.dir:
+            if current_node.dir:
                 self.__insert(current_node.left, data)
-                self.dir = False
+                current_node.dir = False
             else:
                 self.__insert(current_node.right, data)
-                self.dir = True
+                current_node.dir = True
 
     def __replace(self, node, data):
         """Replaces node with data and inserts
@@ -64,18 +88,11 @@ class BinaryHeap:
         if not node.right:
             node.right = Node()
 
-    def __compare(self, node1, node2):
-        """Compares two nodes and returns the one with
-        a larger value
-
-        Params: node1, node2 - Nodes
-        Node, Node -> Node
-        """
-        compares = {node1.val: node1,
-                    node2.val: node2}
-        return compares[max(node1.val, node2.val)]
-
     def __str__(self):
+        """Wrapper for to_str
+
+        () -> () -> str
+        """
         return self.to_str(self.root)
 
     def to_str(self, node, depth=0):
@@ -98,6 +115,7 @@ class Node:
         self.val = val
         self.left = None
         self.right = None
+        self.dir = False
 
     def __str__(self):
         return "({}, {})".format(self.key, self.val)
