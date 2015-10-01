@@ -1,13 +1,17 @@
+from math import log, pow
+
+
 class HashTable:
 
     def __init__(self, array):
-        self.keys = []
+        self.key_list = set()
         self.vals = []
+        size = int(100*pow(log(len(array)), 2))
+        self.buckets = max(1, size)
+        self.vals = [None] * self.buckets
         self.length = 0
-        self.length = len(array)
-        self.vals = [None] * self.length
         for key in array:
-            if key in self.keys:
+            if key in self.key_list:
                 self.update(key, self.get(key)+1)
             else:
                 self.set(key, 1)
@@ -26,27 +30,29 @@ class HashTable:
     def set(self, key, val):
         """Sets key to val (linkedlist.appends to linkedlist at bucket)
 
-        * Should be called iff key not in keys
+        * Should be called iff key not in key_list
         str, int -> ()
         """
         index = self.index(key)
         if not self.vals[index]:
             self.vals[index] = LinkedList()
         self.vals[index].append(key)
-        if key not in self.keys:
-            self.keys.append(key)
+        if key not in self.key_list:
+            self.key_list.add(key)
+        self.length += 1
 
     def update(self, key, val):
         """Finds index(bucket) of key and calls linkedlist.update
 
-        * Should be called iff key is in keys
+        * Should be called iff key is in key_list
         str, int -> (str, int) -> ()
         """
         index = self.index(key)
         self.vals[index].update(key, val)
+        self.length += 1
 
     def keys(self):
-        return self.keys
+        return self.key_list
 
     def __iter__(self):
         """Required for iterable"""
@@ -54,7 +60,7 @@ class HashTable:
             if linkedlist:
                 for node in linkedlist:
                     if node:
-                        yield node
+                        yield node.key
 
     def values(self):
         """Returns all the values in the hashtable
@@ -73,23 +79,17 @@ class HashTable:
         """Generates vals index from key
 
         params: key - string
-                self.length - number of nodes
+                self.buckets - number of nodes
         int, str -> int
         """
-        return hash(key) % self.length
+        return hash(key) % self.buckets
 
     def __len__(self):
         """Returns number of nodes
 
         () -> int
         """
-        counter = 0
-        for linkedlist in self.vals:
-            if linkedlist:
-                for node in linkedlist:
-                    if node:
-                        counter += 1
-        return counter
+        return self.length
 
 
 class LinkedList:
@@ -97,6 +97,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.length = 0
 
     def append(self, key):
         """Appends node to end of self
@@ -117,6 +118,7 @@ class LinkedList:
         else:
             node.next_node = self.tail
             self.head = node
+        self.length += 1
 
     def find(self, key):
         """returns node given key
@@ -152,6 +154,7 @@ class LinkedList:
             previous_node = self[index-1]
             previous_node.next_node = current_node.next_node
             del current_node
+        self.length -= 1
 
     def __iter__(self):
         """Required for iterable"""
@@ -181,12 +184,7 @@ class LinkedList:
 
         () -> int
         """
-        counter = 0
-        node = self.head
-        while node:
-            counter += 1
-            node = node.next_node
-        return counter
+        return self.length
 
     def __str__(self):
         """Returns self as formatted string

@@ -19,7 +19,7 @@ def weighted_select(hist):
 
     dictionary -> string
     """
-    length = sum(hist[word] for word in hist.keys())
+    length = len(hist)
     num = random.randint(0, length)
     for word in hist:
         num -= hist[word]
