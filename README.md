@@ -44,3 +44,7 @@ twitter-bot-python-darioncassel
 
 ## 9. Tokenization
 * [Tokenizer](tokenize.py)
+
+## 10. Counting Tokens
+* [Random Weighted Select of tokens](token_hgram.py)
+* [BinaryHeap](binaryheap.py)
