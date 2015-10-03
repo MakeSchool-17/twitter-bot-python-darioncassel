@@ -1,6 +1,5 @@
 from sortedsinglylinkedlist import SortedSinglyLinkedList
 from random import randint
-import pyprind
 import re
 
 
@@ -17,11 +16,7 @@ class MarkovModel:
         [string], int -> ()
         """
         words_length = len(words)-1-n
-        # Progress bar from pyprind
-        prbar = pyprind.ProgBar(words_length)
         for index in range(words_length):
-            # Update progress bar
-            prbar.update()
             current_words = ""
             next_words = ""
             for i in range(n):
