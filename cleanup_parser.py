@@ -14,7 +14,7 @@ def parse(file_name):
     cleaned_up = ""
     with open(file_name) as file:
         words = file.read()
-        regex = re.compile(r'\b[^\W\d_]+\b\.?', flags=re.I)
+        regex = re.compile(r'\b[^\W\d_]+\b[\.\,\;\:]?', flags=re.I)
         whole_words = regex.findall(words)
         for word in whole_words:
             if len(word) < 2:
