@@ -6,15 +6,17 @@ import sys
 
 if __name__ == "__main__":
     sys.setrecursionlimit(100000)
-    words = tokenize("clean_corpus.txt")
+    c = 2
+    words = tokenize("clean_corpus_{}.txt".format(c))
     model = None
-    with open("trained_model_2.p", "rb") as file:
+    n = 3
+    with open("trained_model{}_{}.p".format(c, n), "rb") as file:
         if len(list(file.peek())) > 0:
             model = pickle.load(file)
     if not model:
-        with open("trained_model_2.p", "wb") as file:
+        with open("trained_model{}_{}.p".format(c, n), "wb") as file:
             model = MarkovModel()
-            model.train(words, 1)
+            model.train(words, n)
             pickle.dump(model, file)
     inp = input("Len: ")
     while input != 0:
