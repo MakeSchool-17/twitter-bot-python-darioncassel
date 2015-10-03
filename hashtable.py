@@ -3,18 +3,22 @@ from math import log, pow
 
 class HashTable:
 
-    def __init__(self, array):
+    def __init__(self, array=None):
         self.key_list = set()
         self.vals = []
-        size = int(100*pow(log(len(array)), 2))
+        if array:
+            size = int(100*pow(log(len(array)), 2))
+        else:
+            size = 0
         self.buckets = max(1, size)
         self.vals = [None] * self.buckets
         self.length = 0
-        for key in array:
-            if key in self.key_list:
-                self.update(key, self.get(key)+1)
-            else:
-                self.set(key, 1)
+        if array:
+            for key in array:
+                if key in self.key_list:
+                    self.update(key, self.get(key)+1)
+                else:
+                    self.set(key, 1)
 
     def __getitem__(self, key):
         return self.get(key)
@@ -25,7 +29,8 @@ class HashTable:
         str -> int
         """
         index = self.index(key)
-        return self.vals[index].find(key).val
+        if self.vals[index]:
+            return self.vals[index].find(key).val
 
     def set(self, key, val):
         """Sets key to val (linkedlist.appends to linkedlist at bucket)

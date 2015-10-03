@@ -1,24 +1,25 @@
 class SortedSinglyLinkedList:
 
-    def __init__(self, array):
+    def __init__(self, array=None):
         self.head = None
         self.last_node = None
         self.length = 0
-        for data in array:
-            index = self.index_of(data)
-            if index is None:
-                node = Node(data)
-                self.insert(node)
-            else:
-                self.update(index)
+        if array:
+            for data in array:
+                index = self.index_of(data)
+                if index is None:
+                    self.insert(data)
+                else:
+                    self.update(index)
         self.length = len(self)
 
-    def insert(self, node):
+    def insert(self, data):
         """Inserts node at correct (sorted) position
 
-        Params: node - node to be inserted
+        Params: data - data to be inserted
         Node -> ()
         """
+        node = Node(data)
         if not self.head:
             node.next_node = self.last_node
             self.head = node
