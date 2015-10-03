@@ -6,9 +6,11 @@ import sys
 
 if __name__ == "__main__":
     sys.setrecursionlimit(100000)
-    c = 2
+    # c = Corpus version number
+    c = 3
     words = tokenize("clean_corpus_{}.txt".format(c))
     model = None
+    # n = lookback
     n = 3
     with open("trained_model{}_{}.p".format(c, n), "rb") as file:
         if len(list(file.peek())) > 0:
