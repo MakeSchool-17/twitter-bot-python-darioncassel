@@ -41,6 +41,8 @@ twitter-bot-python-darioncassel
 ## 8. Parsing Text and Cleanup
 * [Cleanup Parser](cleanup_parser.py)
 * [Clean Corpus](clean_corpus.txt)
+<br>--
+* [Clean Corpus 2](clean_corpus_2.txt) (with periods)
 
 ## 9. Tokenization
 * [Tokenizer](tokenize.py)
@@ -48,3 +50,24 @@ twitter-bot-python-darioncassel
 ## 10. Counting Tokens
 * [Random Weighted Select of tokens](token_hgram.py)
 * [BinaryHeap](binaryheap.py)
+
+## 11. A Word about Application Architecture
+--N/A--
+
+## 12. Generating Sentences with Markov Chains
+* [Markov Model](markovmodel.py)
+* [Markov Model Tester](markovmodel_tester.py)
+<br>--Models--
+* (Pickled) Models with Corpus 1 (n is lookback):
+    * [Trained Model n=1](trained_model1_1.p)
+    * [Trained Model n=2](trained_model1_2.p)
+    * [Trained Model n=3](trained_model1_3.p)
+    * [Trained Model n=4](trained_model1_4.p)
+    * [Trained Model n=5](trained_model1_5.p)
+    * [Trained Model n=6](trained_model1_6.p)
+    * [Trained Model n=7](trained_model1_7.p)
+* (Pickled) Models with Corpus 2:
+    * [Trained Model n=2](trained_model2_2.p)
+    * [Trained Model n=3](trained_model2_3.p)
+    * [Trained Model n=4](trained_model2_4.p)
+    * [Trained Model n=5](trained_model2_5.p)
