@@ -12,6 +12,10 @@
         <div class="result">
             <h2>{{ result }}</h2>
             <h3>-Philisobot</h3>
+            <form class="form" action="/tweet" method="post">
+                <input type="hidden" name="sentence" value="{{ result }}">
+                <button class="btn btn-info" type="submit">Tweet this</button>
+            </form>
         </div>
     </div>
 </body>
