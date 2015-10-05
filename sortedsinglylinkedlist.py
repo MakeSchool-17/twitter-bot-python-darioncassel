@@ -117,7 +117,7 @@ class SortedSinglyLinkedList:
         """
         index = 0
         node = self.head
-        while index < len(self):
+        while node:
             if node.data == data:
                 return index
             if node.next_node:

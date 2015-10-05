@@ -8,11 +8,11 @@ if __name__ == "__main__":
     # set to 100,000 to avoid max recursion depth exceeded error
     sys.setrecursionlimit(100000)
     mapping = {
-                    1: [1, 2, 3, 4, 5, 6, 7],
+                    1: [2, 3, 4, 5, 6, 7],
                     2: [2, 3, 4, 5],
                     3: [2, 3],
-                    4: [1, 2, 3, 4, 5, 6],
-                    5: [1, 2, 3, 4]
+                    4: [2, 3, 4, 5, 6],
+                    5: [2, 3, 4]
                 }
     # c = Corpus version number
     # n = lookback
