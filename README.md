@@ -60,6 +60,7 @@ twitter-bot-python-darioncassel
 ## 12. Generating Sentences with Markov Chains
 * [Markov Model](markovmodel.py)
 * [Markov Model Tester](markovmodel_tester.py)
+* [Model retain script](retrain_models.py)
 <br>--Models--
 * (Pickled) Models with Corpus 1 (n is lookback):
     * [Trained Model n=1](models/trained_model1_1.p)
@@ -84,6 +85,7 @@ twitter-bot-python-darioncassel
     * [Trained Model n=4](models/trained_model4_4.p)
     * [Trained Model n=5](models/trained_model4_5.p)
 * (Pickled) Models with Corpus 5:
+    * [Trained Model n=1](models/trained_model5_1.p)
     * [Trained Model n=2](models/trained_model5_2.p)
     * [Trained Model n=3](models/trained_model5_3.p)
     * [Trained Model n=4](models/trained_model5_4.p)

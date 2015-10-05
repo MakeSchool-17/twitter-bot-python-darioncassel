@@ -12,7 +12,7 @@ if __name__ == "__main__":
     words = tokenize("corpus/clean_corpus_{}.txt".format(c))
     model = None
     # n = lookback
-    n = 3
+    n = 1
     # if a model already exists load it
     with open("models/trained_model{}_{}.p".format(c, n), "rb") as file:
         if len(list(file.peek())) > 0:

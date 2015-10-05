@@ -115,7 +115,14 @@ class SortedSinglyLinkedList:
         Params: data - key of node
         str -> (str -> int)
         """
-        return self.binary_search(data)
+        index = 0
+        node = self.head
+        while index < len(self):
+            if node.data == data:
+                return index
+            if node.next_node:
+                node = node.next_node
+                index += 1
 
     def binary_search(self, data):
         """Binary search through tree
