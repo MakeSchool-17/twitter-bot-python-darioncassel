@@ -1,4 +1,3 @@
-from sortedsinglylinkedlist import SortedSinglyLinkedList
 from random import randint
 import re
 
@@ -30,16 +29,12 @@ class MarkovModel:
                 # if current_words doesn't have a SSLL indexed to it
                 if not self.pointers.get(current_words, None):
                     self.pointers[current_words] = None
-                    ssll = SortedSinglyLinkedList()
-                    ssll.insert(next_word)
-                    self.pointers[current_words] = ssll
+                    next_words = []
+                    next_words.append(next_word)
+                    self.pointers[current_words] = next_words
                 else:
-                    ssll = self.pointers[current_words]
-                    index = ssll.index_of(next_word)
-                    if index is None:
-                        ssll.insert(next_word)
-                    else:
-                        ssll.update(index)
+                    next_words = self.pointers[current_words]
+                    next_words.append(next_word)
 
     def random_walk(self, length):
         """Walk the Markov model with weighted random selection
@@ -60,10 +55,10 @@ class MarkovModel:
             if not key_prefix == "":
                 key_prefix += " "
             current_words = self.pointers.get(current_words, None)
-            print(current_words)
             if current_words:
+                words_length = len(current_words)
                 current_words = key_prefix + \
-                    self.weighted_select(current_words).data
+                    current_words[randint(0, words_length-1)]
                 length -= 1
             else:
                 length = -1
@@ -72,16 +67,3 @@ class MarkovModel:
         regex = re.compile(r'[A-Z][^\.!\?]*[\.!\?]+')
         sentences = regex.findall(result)
         return sentences
-
-    def weighted_select(self, hist):
-        """Selects a element from a histogram taking frequency
-        into account
-
-        dictionary -> string
-        """
-        length = len(hist)
-        num = randint(0, length)
-        for word in hist:
-            num -= word.count
-            if num <= 0:
-                return word
